@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reservation
+  labels:
+    {{- include "pedelec.labels" . | nindent 4 }}
+    app: reservation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reservation
+  template:
+    metadata:
+      labels:
+        app: reservation
+    spec:
+      containers:
+        - name: reservation
+          image: {{ include "pedelec.image" (dict "registry" .Values.image.registry "owner" .Values.image.owner "tag" .Values.image.tag "service" "reservation") }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8080
+              name: reservation-api
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: damage
+  labels:
+    {{- include "pedelec.labels" . | nindent 4 }}
+    app: damage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: damage
+  template:
+    metadata:
+      labels:
+        app: damage
+    spec:
+      containers:
+        - name: damage
+          image: {{ include "pedelec.image" (dict "registry" .Values.image.registry "owner" .Values.image.owner "tag" .Values.image.tag "service" "damage") }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8082
+              name: damage-api
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

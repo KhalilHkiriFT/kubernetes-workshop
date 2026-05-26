@@ -1,0 +1,41 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pedelec-ingress
+  labels:
+    {{- include "pedelec.labels" . | nindent 4 }}
+spec:
+  rules:
+    - host: {{ .Values.ingress.host | quote }}
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/pedelec"
+            backend:
+              service:
+                name: pedelec-reservation-service
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: "/reservation"
+            backend:
+              service:
+                name: pedelec-reservation-service
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: "/locations"
+            backend:
+              service:
+                name: pedelec-location-service
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: "/damage"
+            backend:
+              service:
+                name: pedelec-damage-service
+                port:
+                  number: 80
+{{- end }}

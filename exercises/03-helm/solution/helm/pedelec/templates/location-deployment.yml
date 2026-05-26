@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: location
+  labels:
+    {{- include "pedelec.labels" . | nindent 4 }}
+    app: location
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: location
+  template:
+    metadata:
+      labels:
+        app: location
+    spec:
+      containers:
+        - name: location
+          image: {{ include "pedelec.image" (dict "registry" .Values.image.registry "owner" .Values.image.owner "tag" .Values.image.tag "service" "location") }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8081
+              name: location-api
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

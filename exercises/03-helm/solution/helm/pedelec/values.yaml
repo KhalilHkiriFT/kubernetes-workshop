@@ -1,0 +1,21 @@
+# Default values for the pedelec chart.
+# Each service has its own image — by default we point at the upstream public
+# packages on GHCR. Forkers should override `image.owner` on the CLI:
+#   helm install pedelec ./helm/pedelec --set image.owner=<your-gh-user>
+image:
+  registry: ghcr.io
+  owner: mtze            # GitHub username/org that owns the published packages
+  tag: latest
+  pullPolicy: Always
+
+ingress:
+  enabled: true
+  host: example.pedelec.k8s.ase.cit.tum.de  # CHANGE ME
+
+resources:
+  requests:
+    cpu: "50m"
+    memory: "32Mi"
+  limits:
+    cpu: "500m"
+    memory: "128Mi"

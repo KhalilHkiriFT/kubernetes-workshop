@@ -1,0 +1,10 @@
+# Your task: replace the hardcoded values in the templates with references to
+# entries here, so that the chart is configurable without editing templates.
+#
+# Suggested keys (pick whatever shape makes sense — these are just ideas):
+#   image.registry / image.owner / image.tag / image.pullPolicy
+#   ingress.enabled / ingress.host
+#   resources.requests / resources.limits
+
+# Replace this with real defaults as you templatize the manifests:
+{}
