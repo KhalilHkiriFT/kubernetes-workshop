@@ -22,7 +22,7 @@ Gaps in the numbering are intentional; they leave room to insert new examples wi
 | 04 | Environment variables | 14 | [04-docker-compose-environment/compose.yml](04-docker-compose-environment/compose.yml) |
 | 05 | Custom networks + `expose` | 24 | [05-docker-compose-networks/compose.yml](05-docker-compose-networks/compose.yml) |
 | 10 | Kubernetes `Namespace` | 50 | [10-kubernetes-namespace/namespace.yml](10-kubernetes-namespace/namespace.yml) |
-| 11 | Kubernetes `Pod` | 54 | [11-kubernetes-pod/pod.yml](11-kubernetes-pod/pod.yml) |
+| 11 | Kubernetes `Pod` | 54 | [11-kubernetes-pod/pod.yml](11-kubernetes-pod/pod.yml) — and a deliberately broken [`incorrect-pod.yml`](11-kubernetes-pod/incorrect-pod.yml) for spot-the-bug discussion |
 | 12 | Kubernetes `Deployment` (generic) | 60 | [12-kubernetes-deployment/deployment.yml](12-kubernetes-deployment/deployment.yml) |
 | 13 | Kubernetes `Deployment` (Pedelec reservation) | 68 | [13-kubernetes-deployment-reservation/reservation-deployment.yml](13-kubernetes-deployment-reservation/reservation-deployment.yml) |
 | 14 | Kubernetes `Service` (generic) | 75 | [14-kubernetes-service/service.yml](14-kubernetes-service/service.yml) |
