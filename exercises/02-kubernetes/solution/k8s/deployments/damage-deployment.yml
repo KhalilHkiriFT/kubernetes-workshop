@@ -1,0 +1,37 @@
+# Damage service deployment
+#
+# Notes for forkers: the image below points at the upstream public package on GHCR.
+# If you forked this repo and published your own images, replace `mtze` with your
+# GitHub username (lowercase):
+#
+#   sed -i 's|ghcr.io/mtze|ghcr.io/<your-user>|g' k8s/deployments/*.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: damage
+  labels:
+    app: damage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: damage
+  template:
+    metadata:
+      labels:
+        app: damage
+    spec:
+      containers:
+        - name: damage
+          image: ghcr.io/mtze/pedelec-damage:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
+              name: damage-api
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "32Mi"
+            limits:
+              cpu: "500m"
+              memory: "128Mi"

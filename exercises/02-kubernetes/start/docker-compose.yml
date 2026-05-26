@@ -1,0 +1,33 @@
+# Pedelec backend — local Docker Compose setup
+#
+# Image names follow the pattern published by .github/workflows/build-and-publish.yml,
+# but you don't need to pull anything from a registry to run locally:
+# `docker compose up --build` will build all three images from source.
+#
+# If you want to pull the published images instead, override IMAGE_OWNER and IMAGE_TAG:
+#   IMAGE_OWNER=mtze IMAGE_TAG=latest docker compose up
+
+services:
+  reservation:
+    build:
+      context: ./reservation
+      dockerfile: Dockerfile
+    image: ghcr.io/${IMAGE_OWNER:-mtze}/pedelec-reservation:${IMAGE_TAG:-latest}
+    ports:
+      - "8080:8080"
+
+  location:
+    build:
+      context: ./location
+      dockerfile: Dockerfile
+    image: ghcr.io/${IMAGE_OWNER:-mtze}/pedelec-location:${IMAGE_TAG:-latest}
+    ports:
+      - "8081:8081"
+
+  damage:
+    build:
+      context: ./damage
+      dockerfile: Dockerfile
+    image: ghcr.io/${IMAGE_OWNER:-mtze}/pedelec-damage:${IMAGE_TAG:-latest}
+    ports:
+      - "8082:8082"
