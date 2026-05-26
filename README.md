@@ -44,14 +44,24 @@ kubernetes-workshop/
 │   ├── cluster-access.md
 │   ├── architecture.md                # request flow + mermaid diagram
 │   └── glossary.md
-├── exercises/
+├── exercises/                         # End-to-end, multi-step exercises
 │   ├── 01-microservices/              # Go services + Docker Compose
 │   ├── 02-kubernetes/{start,solution} # raw K8s manifests
 │   └── 03-helm/{start,solution}       # Helm chart
+├── slide-examples/                    # Tiny snippets matching the slide deck (one concept each)
+├── templates/                         # Generic K8s boilerplate with #FIXME markers
 └── scripts/
     ├── verify-prereqs.sh
     └── reset-namespace.sh
 ```
+
+### Three flavors of teaching material
+
+| Folder | Best for |
+|---|---|
+| [`exercises/`](exercises/) | Working through the workshop end-to-end. Each exercise is a real, multi-step task on the Pedelec example. |
+| [`slide-examples/`](slide-examples/) | Demoing one concept at a time during the lecture. Self-contained, copy-paste-ready snippets that mirror the slides. |
+| [`templates/`](templates/) | Starting a new manifest from scratch. Generic boilerplate with `<placeholder> #FIXME` markers. |
 
 ## Container images
 

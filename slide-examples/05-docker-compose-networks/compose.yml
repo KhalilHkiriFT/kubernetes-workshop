@@ -1,0 +1,16 @@
+services:
+  app1:
+    image: "nginxdemos/hello"
+    ports:
+      - "8080:80"
+    networks:
+      - mynet
+  app2:
+    image: "nginxdemos/hello"
+    networks:
+      - mynet
+    expose:
+      - "80"
+
+networks:
+  mynet:

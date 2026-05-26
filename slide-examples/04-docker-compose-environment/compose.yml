@@ -1,0 +1,7 @@
+services:
+  app1:
+    image: "nginxdemos/hello"
+    ports:
+      - "8080:80"
+    environment:
+      - "SOME_KEY=SOME_VALUE"
