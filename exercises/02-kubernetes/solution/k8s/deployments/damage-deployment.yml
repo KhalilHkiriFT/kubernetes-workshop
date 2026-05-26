@@ -9,6 +9,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: damage
+  namespace: my-namespace
   labels:
     app: damage
 spec:

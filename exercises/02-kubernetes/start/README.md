@@ -43,6 +43,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: damage
+  namespace: my-namespace
 spec:
   replicas: 1
   selector:
@@ -83,6 +84,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: pedelec-damage-service
+  namespace: my-namespace
 spec:
   selector:
     app: damage

@@ -1,15 +1,23 @@
 # Pedelec ingress — fan-out to the three microservices
 #
 # IMPORTANT: change the `host:` value below to a hostname you control on your
-# cluster (e.g. <your-namespace>.pedelec.k8s.ase.cit.tum.de). See
+# cluster (e.g. <your-namespace>.pedelec.stud.k8s.aet.cit.tum.de). See
 # docs/cluster-access.md for the hostname pattern used in this workshop.
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: pedelec-ingress
+  namespace: my-namespace
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-staging
 spec:
+  tls:
+    - hosts:
+        - pedelec.stud.k8s.aet.cit.tum.de
+      secretName: reservation-tls
   rules:
-    - host: example.pedelec.k8s.ase.cit.tum.de # CHANGE ME
+    - host: pedelec.stud.k8s.aet.cit.tum.de # CHANGE ME
       http:
         paths:
           - pathType: Prefix

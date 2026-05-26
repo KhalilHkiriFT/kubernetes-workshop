@@ -95,9 +95,22 @@ kubectl create secret docker-registry ghcr-creds \
 
 …then add `imagePullSecrets: [{name: ghcr-creds}]` to each Pod spec. The cleaner answer is to keep the packages public.
 
-### No `Namespace` resource in the YAML
+### Default namespace: `my-namespace`
 
-The manifests don't declare a namespace. That's deliberate — you `kubectl apply -n <your-namespace>` (or set it as your default with `kubectl config set-context --current --namespace=<your-namespace>`), and the same manifests work in everybody's namespace. If we'd hardcoded `namespace: pedelec`, every participant would need to edit every file.
+Every manifest declares `namespace: my-namespace` — matching the convention used in the slide examples. This lets you apply everything without remembering to pass `-n` on every command:
+
+```bash
+kubectl create namespace my-namespace   # one-time
+kubectl apply -R -f k8s/
+```
+
+If you're on the TUM cluster and have your own personal namespace (e.g. `mtze`), retarget all the manifests with one sed:
+
+```bash
+sed -i 's/my-namespace/<your-namespace>/g' k8s/**/*.yml k8s/*.yml
+```
+
+…or override per-apply: `kubectl apply -n <your-namespace> -R -f k8s/`. (Note: a `namespace:` in the manifest takes precedence over `-n` on the command line — so if you're using `-n` you'll want to strip the hardcoded value first, or just edit the files.)
 
 ## Verifying
 
