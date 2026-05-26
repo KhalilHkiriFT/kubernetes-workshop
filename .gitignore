@@ -1,0 +1,36 @@
+# Go build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+vendor/
+
+# IDE / editor cruft
+.idea/
+.vscode/
+*.iml
+*.swp
+*~
+.DS_Store
+
+# Kubeconfig & secrets — never commit these
+kubeconfig
+*.kubeconfig
+*-secret.yml
+*-secret.yaml
+*.kubeconfig.yaml
+
+# Local helm artifacts
+*.tgz
+charts/
+
+# Docker compose overrides
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# Build & cache
+dist/
+build/
+.cache/
