@@ -2,9 +2,9 @@
 
 ## TUM ASE CIT cluster (workshop default)
 
-Workshop participants get a personal namespace on the shared TUM ASE CIT Kubernetes cluster (`k8s.ase.cit.tum.de`). The workshop facilitator will hand out a `kubeconfig` file per participant.
+Workshop participants get a personal namespace on the shared TUM ASE CIT Kubernetes cluster (`rancher.ase.cit.tum.de`).
 
-1. Save the file the facilitator gives you to `~/.kube/pedelec-workshop.yaml`.
+1. Download the `kubeconfig` file from rancher and save it to `~/.kube/pedelec-workshop.yaml`.
 2. Tell `kubectl` to use it for this session:
 
    ```bash
